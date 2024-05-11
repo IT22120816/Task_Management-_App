@@ -1,7 +1,20 @@
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.0.3") // Use the latest stable version
+    }
+}
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
+
+    //kotlin("android") version "1.6.10" // Use the latest stable version
 }
 
 android {
@@ -62,4 +75,6 @@ dependencies {
 
     // Coroutines dependency
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+
 }
