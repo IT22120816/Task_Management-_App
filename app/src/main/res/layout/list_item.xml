@@ -23,8 +23,7 @@
                 android:layout_alignParentStart="true"
                 android:text="title"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-></TextView>
+                android:textSize="18sp" />
 
 
 
@@ -36,10 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:text="title"
+            android:text="Note"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            ></TextView>
+            android:textSize="14sp" />
 
 
         <TextView
@@ -47,10 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:text="title"
+            android:text="Date"
             android:textColor="@color/black"
             android:textSize="14sp"
-            ></TextView>
+            />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
