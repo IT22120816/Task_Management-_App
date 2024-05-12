@@ -64,7 +64,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    val roomVersion = "2.4.2"
+    val roomVersion = "2.6.1"
     val lifecycleVersion = "2.4.1"
     val coroutinesVersion = "1.3.9"
 

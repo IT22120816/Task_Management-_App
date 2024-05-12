@@ -25,13 +25,16 @@ class AddNote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_add_note)
+        setContentView(binding.root)
 
         try {
             old_note=intent.getSerializableExtra("current_note")as Note
             binding.etTitle.setText(old_note.title)
             binding.etNote.setText(old_note.note)
             isUpdate=true
+
+
+
 
         }catch (e :Exception){
 
@@ -55,7 +58,7 @@ class AddNote : AppCompatActivity() {
                     note=Note(null, title,note_desc,formatter.format(Date()))
 
                 }
-
+1
                 val intent= Intent()
                 intent.putExtra("note",note)
                 setResult(Activity.RESULT_OK,intent)
@@ -69,6 +72,7 @@ class AddNote : AppCompatActivity() {
 
         binding.imgBackArrow.setOnClickListener{
             onBackPressed()
+
         }
     }
 }
