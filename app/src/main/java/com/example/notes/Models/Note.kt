@@ -14,4 +14,4 @@ data class Note(
     @ColumnInfo(name="note") val note : String?,
     @ColumnInfo(name="date")val date : String?
 
-):Serializable
+):java.io.Serializable 
