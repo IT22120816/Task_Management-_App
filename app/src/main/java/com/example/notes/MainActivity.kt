@@ -3,11 +3,14 @@ package com.example.notes
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import android.widget.SearchView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +21,7 @@ import com.example.notes.Models.Note
 import com.example.notes.Models.NoteViewModel
 import com.example.notes.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NotesAdapter.NotesitemclickListner ,PopupMenu.OnMenuItemClickListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: NoteDatabase
@@ -30,7 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         if (result.resultCode== Activity.RESULT_OK){
 
-            
+            val note =result.data?.getSerializableExtra("note")as? Note
+            if(note !=null){
+
+                viewModel.updateNote(note)
+            }
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,5 +105,34 @@ class MainActivity : AppCompatActivity() {
 
 
         })
+    }
+
+    override fun onitemClicked(note: Note) {
+        val intent = Intent(this@MainActivity,AddNote::class.java)
+        intent.putExtra("current_note",note)
+        updateNote.launch(intent)
+    }
+
+    override fun onLongItemClicked(note: Note, cardView: CardView) {
+        selectedNote = note
+        popUpDisplay(cardView)
+    }
+
+    private fun popUpDisplay(cardView : CardView){
+
+        val popup = PopupMenu(this,cardView)
+        popup.setOnMenuItemClickListener(this@MainActivity)
+        popup.inflate(R.menu.pop_up_menu)
+        popup.show()
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+        if(item?.itemId ==R.id.delete_note){
+
+            viewModel.deleteNote(selectedNote)
+            return true
+        }
+        return false
     }
 }
